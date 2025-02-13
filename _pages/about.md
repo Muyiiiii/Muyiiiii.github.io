@@ -11,7 +11,7 @@ Hi! I’m a senior undergraduate student at **Tongji University** in Shanghai, C
 
 I am actively seeking **internships, master's programs, and PhD opportunities** that will enable me to further my research and take it to the next level.
 
-Link: [CV](../files/CV_JieYang.pdf "CV_JieYang")
+Link: [CV](../files/pdf/CV_JieYang.pdf "CV_JieYang")
 
 Interests
 =========
@@ -21,4 +21,4 @@ Interests
 
 # Research Experience
 
-See in my [CV](../files/CV_JieYang.pdf "CV_JieYang").
+See in my [CV](../files/pdf/CV_JieYang.pdf "CV_JieYang").

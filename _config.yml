@@ -81,7 +81,7 @@ analytics:
 # Site Author
 author:
   name             : "Jie Yang"
-  avatar           : "profile.png"
+  avatar           : "../files/pic/JieYang.png"
   bio              : "A senior undergraduate student at Tongji University"
   location         : "Shanghai, China"
   employer         :
