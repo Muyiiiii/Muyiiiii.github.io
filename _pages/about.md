@@ -16,9 +16,7 @@ I am actively seeking **internships, master's programs, and PhD opportunities** 
 
 My research interests focus on:
 
-- Data Mining
-  - Graph Learning
-  - Time Series
+- Data Mining: Graph Learning, Time Series
 - LLM
 
 Link: [CV](../files/pdf/CV_JieYang.pdf "CV_JieYang")
