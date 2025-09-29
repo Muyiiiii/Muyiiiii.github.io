@@ -59,8 +59,8 @@ Grad: Guided Relation Diffusion Generation for Graph Augmentation in Graph Fraud
 
 ## 📖 Educations
 
-- 2025.09-2030.06 (*expected*), Ph.D. in Computer Science, **University of Illinois Chicago**
-- 2021.09- 2025.06, Bachelor in Computer Science, **Tongji University**
+- 2025.09-2030.06 (*expected*), Ph.D. in Computer Science, ![](../files/pic/info/uic-small.png) **University of Illinois Chicago**
+- 2021.09- 2025.06, Bachelor in Computer Science, ![](../files/pic/info/tongji.png)**Tongji University**
 
 ## 🔗 Service
 
