@@ -29,7 +29,7 @@ Email: jyang265[at]uic[dot]edu
 
 Notes:（*）indicates the equal contributions.
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">NeurIPS, 2025</div><img src='../files/pic/paper/Glocal-IB.pdf' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">NeurIPS, 2025</div><img src='../files/pic/paper/Glocal-IB.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 Glocal Information Bottleneck for Time Series Imputation
@@ -42,7 +42,7 @@ Glocal Information Bottleneck for Time Series Imputation
 </div>
 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">WWW, 2025</div><img src='../files/pic/paper/Grad.pdf' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">WWW, 2025</div><img src='../files/pic/paper/Grad.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 Grad: Guided Relation Diffusion Generation for Graph Augmentation in Graph Fraud Detection
