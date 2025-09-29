@@ -9,7 +9,7 @@
 
 main:
   - title: "About Me"
-    url: "/#about-me"
+    url: "/about/"
 
   - title: "Publications"
     url: "/#-publications"
@@ -19,3 +19,23 @@ main:
 
   # - title: "Internships"
   #   url: "/#-internships"
+  # - title: "Publications"
+  #   url: /publications/
+
+  # - title: "Talks"
+  #   url: /talks/    
+
+  # - title: "Teaching"
+  #   url: /teaching/    
+    
+  # - title: "Portfolio"
+  #   url: /portfolio/
+        
+  # - title: "Blog Posts"
+  #   url: /year-archive/
+    
+  # - title: "CV"
+  #   url: /cv/
+    
+  # - title: "Guide"
+  #   url: /markdown/
