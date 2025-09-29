@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Jie Yang"
 title_separator          : "-"
 name                     : &name "Jie Yang"
-description              : &description "A senior undergraduate student at Tongji University"
+description              : &description "A 25Fall Ph.D. student at UIC"
 url                      : https://muyiiiii.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "muyiiiii/muyiiiii.github.io"
@@ -82,12 +82,12 @@ analytics:
 author:
   name             : "Jie Yang"
   avatar           : "../files/pic/JieYang.png"
-  bio              : "Incoming Ph.D. student at UIC"
+  bio              : "A 25Fall Ph.D. student at UIC"
   location         : "Chicago, US"
   employer         :
   pubmed           : # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   googlescholar    : "https://scholar.google.com/citations?user=hYeMB74AAAAJ&hl=en"
-  email            :
+  email            : "jyang265@uic.edu"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -96,14 +96,14 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "Muyiiiii"
+  github           : "Muyiiiii.github.io"
   google_plus      :
   keybase          :
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         :
-  orcid            : # "http://orcid.org/yourorcidurl"
+  linkedin         : "https://www.linkedin.com/in/jie-yang-4a3894325/"
+  orcid            : "https://orcid.org/0009-0009-7857-6863"
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
