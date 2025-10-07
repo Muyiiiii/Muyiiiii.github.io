@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 
-Hi! I am a 25Fall Ph.D. student in Computer Science at [the University of Illinois Chicago (UIC)](https://www.uic.edu/). Previously, I was a research intern at [Northwestern University](https://www.northwestern.edu/), where I worked closely with Prof. [Kaize Ding](https://scholar.google.com/citations?user=PI3myr8AAAAJ&hl=en&oi=ao). I received my B.E. in Computer Science from [Tongji University](https://www.tongji.edu.cn/), working closely [with Dawei Cheng](https://scholar.google.com/citations?user=4UD20ukAAAAJ&hl=en).
+Hi! I am a 25Fall Ph.D. student in Computer Science at [the University of Illinois Chicago (UIC)](https://www.uic.edu/). Previously, I was a research intern at [Northwestern University](https://www.northwestern.edu/), where I worked closely with Prof. [Kaize Ding](https://scholar.google.com/citations?user=PI3myr8AAAAJ&hl=en&oi=ao). I received my B.E. in Computer Science from [Tongji University](https://www.tongji.edu.cn/), working closely with [Dawei Cheng](https://scholar.google.com/citations?user=4UD20ukAAAAJ&hl=en).
 
 My research interests focus on:
 
@@ -38,7 +38,7 @@ Glocal Information Bottleneck for Time Series Imputation
 
 **Jie Yang**, Kexin Zhang, Guibin Zhang, Philip S. Yu, Kaize Ding
 
-[ **Paper**](https://neurips.cc/virtual/2025/poster/116239)   [**Code**](https://github.com/Muyiiiii/NeurIPS-25-Glocal-IB)
+[**Paper**](https://neurips.cc/virtual/2025/poster/116239)  [**Arxiv**](https://arxiv.org/pdf/2510.04910)   [**Code**](https://github.com/Muyiiiii/NeurIPS-25-Glocal-IB)
 
 </div>
 </div>
