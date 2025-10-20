@@ -25,7 +25,7 @@ Email: jyang265[at]uic[dot]edu
 
 ## 🔥 News
 - *2025.09*: 🎉🎉 One paper is accepted by NeurIPS 2025!
-- *2025.01*: 🎉🎉 One paper is accepted by WWWW 2025!
+- *2025.01*: 🎉🎉 One paper is accepted by WWW 2025!
 
 ## 📝 Publications
 
