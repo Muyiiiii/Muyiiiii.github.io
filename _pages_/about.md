@@ -36,7 +36,7 @@ Notes:（*）indicates the equal contributions.
 
 Bridging Past and Future: Distribution-Aware Alignment for Time Series Forecasting
 
-Yifan Hu*, **Jie Yang***, Tian Zhou, Peiyuan Liu, Yujin Tang, Rong Jin, Liang Sun
+Yifan Hu\*, **Jie Yang**\*, Tian Zhou, Peiyuan Liu, Yujin Tang, Rong Jin, Liang Sun
 
 [ **Paper**](https://arxiv.org/pdf/2509.14181)   [**Code**](https://github.com/TROUBADOUR000/TimeAlign)
 
