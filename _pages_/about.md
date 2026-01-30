@@ -31,6 +31,18 @@ Email: jyang265[at]uic[dot]edu
 
 Notes:（*）indicates the equal contributions.
 
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR, 2026</div><img src='../files/pic/paper/TimeAlign.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+Bridging Past and Future: Distribution-Aware Alignment for Time Series Forecasting
+
+Yifan Hu$^{*}$, **Jie Yang$^{*}$**, Tian Zhou, Peiyuan Liu, Yujin Tang, Rong Jin, Liang Sun
+
+[ **Paper**](https://arxiv.org/pdf/2509.14181)   [**Code**](https://github.com/TROUBADOUR000/TimeAlign)
+
+</div>
+</div>
+
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">NeurIPS, 2025</div><img src='../files/pic/paper/Glocal-IB.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
