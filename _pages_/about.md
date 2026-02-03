@@ -24,6 +24,7 @@ My research interests focus on:
 Email: jyang265[at]uic[dot]edu
 
 ## 🔥 News
+- *2026.01*: 🎉🎉 Two papers are accepted by ICLR 2026!
 - *2025.09*: 🎉🎉 One paper is accepted by NeurIPS 2025!
 - *2025.01*: 🎉🎉 One paper is accepted by WWW 2025!
 
