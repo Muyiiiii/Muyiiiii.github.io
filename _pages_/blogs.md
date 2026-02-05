@@ -6,6 +6,7 @@ author_profile: true
 ---
 {% include base_path %}
 
-{% for post in site.blogs %}
+{% assign sorted_blogs = site.blogs | sort: 'path' %}
+{% for post in sorted_blogs %}
   {% include archive-single.html %}
 {% endfor %}
