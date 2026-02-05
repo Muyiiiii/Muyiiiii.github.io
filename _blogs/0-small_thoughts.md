@@ -6,7 +6,7 @@ Some of Other Thoughts
 
 # LSTM
 
-![lstm-3.svg](./0-small_thoughts.assets/lstm-3.svg)
+![lstm-3.svg](../files/blog_assets/lstm-3.svg)
 
 H是短时记忆，C是长时记忆
 
