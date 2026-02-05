@@ -4,9 +4,9 @@ title: "Blogs"
 permalink: /blogs/
 author_profile: true
 ---
-
 {% include base_path %}
 
-{% for post in site.blogs reversed %}
+{% assign sorted_blogs = site.blogs | sort: 'date' | reverse %}
+{% for post in sorted_blogs %}
   {% include archive-single.html %}
 {% endfor %}
