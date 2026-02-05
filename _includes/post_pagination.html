@@ -25,14 +25,14 @@
 {% if prev_post or next_post %}
   <nav class="pagination">
     {% if prev_post %}
-      <a href="{{ base_path }}{{ prev_post.url }}" class="pagination--pager" title="{{ prev_post.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+      <a href="{{ base_path }}{{ prev_post.url }}" class="pagination--pager" title="{{ prev_post.title | markdownify | strip_html }}"><i class="fas fa-arrow-left" aria-hidden="true"></i> Previous</a>
     {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+      <a href="#" class="pagination--pager disabled"><i class="fas fa-arrow-left" aria-hidden="true"></i> Previous</a>
     {% endif %}
     {% if next_post %}
-      <a href="{{ base_path }}{{ next_post.url }}" class="pagination--pager" title="{{ next_post.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+      <a href="{{ base_path }}{{ next_post.url }}" class="pagination--pager" title="{{ next_post.title | markdownify | strip_html }}">Next <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
     {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+      <a href="#" class="pagination--pager disabled">Next <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
     {% endif %}
   </nav>
 {% endif %}
