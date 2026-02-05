@@ -6,7 +6,7 @@ Some of Other Thoughts
 
 # LSTM
 
-![lstm-3.svg](/files/blog_assets/lstm-3.svg)
+![lstm-3.svg](../files/blog_assets/lstm-3.svg)
 
 
 
