@@ -1,14 +1,36 @@
 {% include base_path %}
 
-{% if page.previous or page.next %}
+{% if page.collection == 'blogs' %}
+  {% assign sorted_collection = site.blogs | sort: 'path' %}
+{% else %}
+  {% assign sorted_collection = site[page.collection] %}
+{% endif %}
+
+{% assign prev_post = nil %}
+{% assign next_post = nil %}
+{% assign found = false %}
+
+{% for post in sorted_collection %}
+  {% if found == true and next_post == nil %}
+    {% assign next_post = post %}
+  {% endif %}
+  {% if post.url == page.url %}
+    {% assign found = true %}
+  {% endif %}
+  {% if found == false %}
+    {% assign prev_post = post %}
+  {% endif %}
+{% endfor %}
+
+{% if prev_post or next_post %}
   <nav class="pagination">
-    {% if page.previous %}
-      <a href="{{ base_path }}{{ page.previous.url }}" class="pagination--pager" title="{{ page.previous.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+    {% if prev_post %}
+      <a href="{{ base_path }}{{ prev_post.url }}" class="pagination--pager" title="{{ prev_post.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
     {% else %}
       <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
     {% endif %}
-    {% if page.next %}
-      <a href="{{ base_path }}{{ page.next.url }}" class="pagination--pager" title="{{ page.next.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+    {% if next_post %}
+      <a href="{{ base_path }}{{ next_post.url }}" class="pagination--pager" title="{{ next_post.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
     {% else %}
       <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
     {% endif %}
