@@ -41,7 +41,7 @@ A^\pi(s_t,a_t)=Q^\pi(s_t,a_t)-V^\pi(s_t)
 $$
 
 * $Q$：执行 $a_t$ 之后的期望回报
-* $V$：在 $s_t$ 下平均期望回报（baseline）
+* $V$：在 $s_t$ 下平均期望回报（baseline）: **$V(s_t) = \mathbb{E}_{a_t \sim \pi}\big[Q(s_t, a_t)\big]$**
 
 所以 $A>0$ 表示这个动作比平均好，应当提高 $\pi(a_t|s_t)$；反之降低。
 
