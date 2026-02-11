@@ -1,5 +1,3 @@
-
-
 ---
 title: "Proximal Policy Optimization (PPO)"
 date: 2026-02-11
@@ -7,8 +5,7 @@ date: 2026-02-11
 Introduction of Proximal Policy Optimization (PPO)
 
 
-
-把 **PPO** 讲清楚： **Advantage A 怎么来** 、 **GAE 怎么算** 、以及  **PPO 的 loss 由哪些项组成、各自起什么作用** 。我会默认你已经知道基本的 Actor-Critic 框架（策略 $\pi_\theta$、价值函数 $V_\phi$）。
+把 **PPO** 讲清楚： **Advantage A 怎么来** 、 **GAE 怎么算** 、以及  **PPO 的 loss 由哪些项组成、各自起什么作用** 。默认已经知道基本的 Actor-Critic 框架（策略 $\pi_\theta$、价值函数 $V_\phi$）。
 
 ---
 
