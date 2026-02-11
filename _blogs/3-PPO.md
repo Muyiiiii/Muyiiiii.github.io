@@ -1,4 +1,14 @@
-下面按"你真正写代码会用到的口径"把 **PPO** 讲清楚： **Advantage A 怎么来** 、 **GAE 怎么算** 、以及  **PPO 的 loss 由哪些项组成、各自起什么作用** 。我会默认你已经知道基本的 Actor-Critic 框架（策略 $\pi_\theta$、价值函数 $V_\phi$）。
+
+
+---
+title: "Proximal Policy Optimization (PPO)"
+date: 2026-02-11
+---
+Introduction of Proximal Policy Optimization (PPO)
+
+
+
+把 **PPO** 讲清楚： **Advantage A 怎么来** 、 **GAE 怎么算** 、以及  **PPO 的 loss 由哪些项组成、各自起什么作用** 。我会默认你已经知道基本的 Actor-Critic 框架（策略 $\pi_\theta$、价值函数 $V_\phi$）。
 
 ---
 
@@ -9,6 +19,8 @@
 $$
 J(\theta)=\mathbb{E}_{\tau\sim \pi_\theta}\Big[\sum_{t}\gamma^t r_t\Big]
 $$
+
+$r_t$是环境奖励，$\gamma$是折扣因子。
 
 经典 policy gradient：
 
@@ -54,7 +66,23 @@ $$
 \delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)
 $$
 
-这表示"当前价值估计和一步 TD 目标的差距"。
+把 $V(s_t)$ 理解成"你站在 $s_t$ 时，对未来总回报的**预期**"。然后你真的走了一步，拿到了实际奖励 $r_t$，到达了 $s_{t+1}$。这时候你可以用一个更新后的估计来评价"未来总回报到底该是多少"：
+
+$$
+\underbrace{r_t}_{\text{真实拿到的}} + \underbrace{\gamma V(s_{t+1})}_{\text{到了新状态后，对剩余未来的预期}}
+$$
+
+这就是所谓的 **TD target**（一步 TD 目标）。所以 $\delta_t$ 就是：
+
+$$
+\delta_t = \underbrace{r_t + \gamma V(s_{t+1})}_{\text{走了一步后的"事后估计"}} - \underbrace{V(s_t)}_{\text{走之前的"事前预期"}}
+$$
+
+* $\delta_t > 0$：实际比预期好 —— $V(s_t)$ 低估了
+* $\delta_t < 0$：实际比预期差 —— $V(s_t)$ 高估了
+* $\delta_t \approx 0$：critic 估得很准
+
+本质上 $\delta_t$ 就是 **1-step 版本的 Advantage**（$\lambda=0$ 时 $A_t = \delta_t$）。GAE 做的事就是把很多步的 $\delta$ 加权求和，得到更稳定的 Advantage 估计。
 
 ### 3.2 GAE 的核心公式
 
@@ -85,13 +113,51 @@ $$
 
 ### 3.5 Return（给 value loss 用）怎么来
 
-常见做法：
+Critic 的训练目标是让 $V_\phi(s_t)$ 尽可能接近"真实回报"。问题是你没有真实回报，需要一个估计量 $\hat{R}_t$ 来做回归目标。
+
+**最常见做法（GAE 顺带就算出来了）**：
 
 $$
-\hat{R}_t = A_t + V(s_t)
+\hat{R}_t = A_t^{\text{GAE}} + V(s_t)
 $$
 
-（也可以单独算 n-step/MC return，但上面这套最常见）
+**为什么这个公式成立？** 回忆 Advantage 的定义：
+
+$$
+A_t = Q(s_t,a_t) - V(s_t) \quad\Longrightarrow\quad Q(s_t,a_t) = A_t + V(s_t)
+$$
+
+而 $Q(s_t,a_t)$ 本身就是"在 $s_t$ 执行 $a_t$ 后的期望回报"，所以 $\hat{R}_t = A_t + V(s_t)$ 就是用 GAE 估出来的 $Q$ 值。
+
+**但等一下，$V$ 估计的是所有动作的平均回报，拿某个具体动作的 $Q$ 当 $V$ 的 target 不是错了吗？**
+
+并没有。关键在于 **采样期望**：
+
+$$
+V(s_t) = \mathbb{E}_{a_t \sim \pi}\big[Q(s_t, a_t)\big]
+$$
+
+每次 rollout 采到的 $a_t$ 是从 $\pi$ 里抽出来的，所以这个样本的 $\hat{R}_t$（即 $Q(s_t, a_t)$）虽然是某一个动作的回报，但 **在期望意义下它就等于 $V(s_t)$**。这和监督学习一样：你要拟合 $\mathbb{E}[Y|X]$，手里只有单个样本 $y_i$，用 MSE loss 训练，模型最终收敛到条件期望：
+
+$$
+\min_\phi \;\mathbb{E}\big[(V_\phi(s_t) - \hat{R}_t)^2\big] \quad\Longrightarrow\quad V_\phi \to \mathbb{E}[\hat{R}_t \mid s_t] = V^\pi(s_t)
+$$
+
+每个 $\hat{R}_t$ 是某一次动作的回报（有噪声），但大量样本平均下来，$V_\phi$ 会收敛到真正的 $V$。
+
+**其他算 Return 的方式（了解即可）**：
+
+| 方法          | 公式                                                                   | 特点                      |
+| ------------- | ---------------------------------------------------------------------- | ------------------------- |
+| MC Return     | $\hat{R}_t = \sum_{k=0}^{T-t-1}\gamma^k r_{t+k}$                     | 无偏，方差大              |
+| 1-step TD     | $\hat{R}_t = r_t + \gamma V(s_{t+1})$                                | 偏差大，方差小            |
+| n-step Return | $\hat{R}_t = \sum_{k=0}^{n-1}\gamma^k r_{t+k} + \gamma^n V(s_{t+n})$ | 居中                      |
+| GAE-based     | $\hat{R}_t = A_t^{\text{GAE}} + V(s_t)$                              | 同时复用 GAE 结果，最常用 |
+
+**实践要点**：
+
+* $\hat{R}_t$ 里的 $V(s_t)$ 是 **采样时** 的 value（即 $V_{\text{old}}$），不是当前正在更新的 value。训练中 $V_\phi$ 在变，但目标 $\hat{R}_t$ 在一轮 rollout 内是固定的
+* 这也是为什么代码里通常在 rollout 阶段就把 $A_t$ 和 $\hat{R}_t$ 都算好、存进 buffer，后面多个 epoch 复用
 
 ---
 
@@ -125,7 +191,7 @@ r_t(\theta)A_t,\;
 \Big]
 $$
 
-**分情况直觉：**
+**分情况直觉**：
 
 * 若 $A_t>0$：你想增大 $r_t$，但一旦 $r_t>1+\epsilon$，就用 clip 后的上限，防止过猛。
 * 若 $A_t<0$：你想减小 $r_t$，但一旦 $r_t<1-\epsilon$，clip 把下降幅度限制住。
@@ -157,12 +223,12 @@ $$
 \mathcal{L}_{\text{policy}} = -L^{\text{CLIP}}
 $$
 
-**作用：**
+**作用**：
 
 * 用 $A_t$ 指导方向（credit assignment）
 * 用 clip 控制更新幅度（稳定性）
 
-**实践细节：**
+**实践细节**：
 
 * $A_t$ 通常会做标准化：$A \leftarrow (A-\mu)/(\sigma+1e{-8})$，显著稳定训练
 
@@ -176,7 +242,7 @@ $$
 \mathcal{L}_V = \mathbb{E}\big[(V_\phi(s_t)-\hat{R}_t)^2\big]
 $$
 
-**作用：**
+**作用**：
 
 * 价值网络越准，Advantage 方差越小，policy 更新越稳
 * critic 很烂时，PPO 也会变得"像在瞎更新"
@@ -192,7 +258,7 @@ $$
 \mathcal{L}_V=\mathbb{E}\big[\max((V-\hat{R})^2,\;(V_{\text{clip}}-\hat{R})^2)\big]
 $$
 
-**作用：**防止 critic 一步跳太远导致目标漂移、训练不稳。
+**作用**：防止 critic 一步跳太远导致目标漂移、训练不稳。
 
 ---
 
@@ -212,7 +278,7 @@ $$
 \mathcal{L}_{\text{entropy}}=-c_e\,\mathcal{H}
 $$
 
-**作用：**
+**作用**：
 
 * 抵抗 mode collapse（策略太快收缩）
 * 在稀疏奖励任务里尤其关键
@@ -226,7 +292,7 @@ $$
 * 监控 $\mathrm{KL}(\pi_{\text{old}}\|\pi)$，超过阈值就 early stop 当前 epoch
 * 或加 KL penalty：$+\beta \,\mathrm{KL}$
 
-**作用：**进一步保证"别走太远"。
+**作用**：进一步保证"别走太远"。
 
 ---
 
@@ -253,7 +319,3 @@ $$
 * **clip $\epsilon$** ：太小学不动，太大不稳。常见 0.1～0.3
 * **reward scaling / normalization** ：连续控制里很常见
 * **critic 过强或过弱都不行** ：过弱 A 噪声大；过强也可能让策略更新变"保守但错误"（取决于偏差）
-
----
-
-如果你愿意，我可以按你要用的场景（**离散动作**还是 **连续动作高斯策略** ，是否有  **终止状态/截断** 、是否要  **value clip/KL early stop** ）把一份"最小但完整"的 PPO 伪代码（含 GAE 计算）写出来，直接能对照你自己的实现。
