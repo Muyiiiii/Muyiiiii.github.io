@@ -109,7 +109,7 @@ $$
 
 1. **$\hat{A}_i$ 是 sequence-level 的**：整个输出 $o_i$ 共用一个 Advantage（不像 PPO 里每个 token 有自己的 $A_t$）
 2. **ratio 是 token-level 的**：每个 token 位置都有自己的 $\rho_{i,t}$，clip 也是逐 token 做的
-3. **除以 $|o_i|$**：对序列长度做归一化，防止长回答 dominate loss
+3. **除以 $\lvert o_i \rvert$**：对序列长度做归一化，防止长回答 dominate loss
 
 ### 3.2 KL 惩罚（替代 Entropy bonus）
 
@@ -205,7 +205,7 @@ $$
 * **采样数 $G$ 很关键**：$G$ 太小，均值 baseline 噪声大；$G$ 太大，计算开销大。DeepSeek-R1 里 $G=64$，DeepSeek-Math 里通常 $G \in [16, 64]$
 * **当组内所有回答得分一样时**：$\text{std}=0$，除以 std 会爆。实现中需要加 $\epsilon$：$\hat{A}_i = \frac{r_i - \mu}{\sigma + \epsilon}$，或者直接跳过这个 group
 * **Reward hacking**：因为只看最终奖励，模型可能学到讨好 Reward Model 的"表面技巧"。KL penalty 和 reward model 质量是关键防线
-* **长度偏差**：reward model 倾向给长回答高分 → 模型越写越长。归一化 loss 除以 $|o_i|$ 能缓解，但不能完全解决
+* **长度偏差**：reward model 倾向给长回答高分 → 模型越写越长。归一化 loss 除以 $\lvert o_i \rvert$ 能缓解，但不能完全解决
 * **KL 系数 $\beta$**：太大训不动（被锁死在 reference 附近），太小容易 reward hacking。常见做法是动态调整或者 warmup
 * **温度采样**：采样 $G$ 个输出时的 temperature 会影响组内多样性。太低 → 回答太相似，Advantage 区分度小；太高 → 质量太差
 * **和 PPO 的互补**：一些工作（如 DeepSeek-R1）先用 GRPO 大规模训练，再用 PPO 做精调。GRPO 省资源适合大规模训，PPO 精细调控适合最后阶段打磨
