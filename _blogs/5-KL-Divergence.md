@@ -5,7 +5,7 @@ date: 2026-04-25
 Introduction of KL Divergence, entropy, cross entropy, and the difference between Forward KL and Reverse KL.
 
 
-KL divergence（Kullback-Leibler divergence）衡量的是：**用一个分布 $Q$ 去近似另一个分布 $P$ 时，多付出了多少信息代价**。
+Kullback-Leibler divergence (KL divergence) 衡量的是：**用一个分布 $Q$ 去近似另一个分布 $P$ 时，多付出了多少信息代价**。
 
 通常在机器学习里，我们可以先这样记：
 
@@ -369,9 +369,9 @@ $$
 
 这和 Forward KL 的直觉一致：真实数据出现的地方，模型必须覆盖。
 
-### Variational Inference 和 VAE
+### Variational Inference (VI) 和 Variational Autoencoder (VAE)
 
-在 variational inference 里，我们经常有真实后验：
+在 VI 里，我们经常有真实后验：
 
 $$
 p(z \mid x)
@@ -403,7 +403,7 @@ $$
 
 ### On-policy distillation
 
-在 LLM distillation 里，通常有两个模型：
+在 Large Language Model (LLM) distillation 里，通常有两个模型：
 
 $$
 \pi_T = \text{teacher policy}

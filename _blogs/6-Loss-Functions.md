@@ -4,7 +4,7 @@ date: 2026-04-28
 ---
 Derivation of common loss functions from a unified MLE / NLL perspective: MSE, MAE, CE, and beyond.
 
-把"为什么是这个 loss"说清楚，需要回到一个统一框架：**假设数据由某个概率模型生成，写出似然，取负对数，得到 loss**。MAE / MSE / CE 都是这个框架在不同噪声假设下的特例。这篇 blog 顺着这条主线把三种最常见的回归 / 分类损失推一遍，再延伸到正则化、Focal、Hinge、InfoNCE 等几个常见变体。
+把"为什么是这个 loss"说清楚，需要回到一个统一框架：**假设数据由某个概率模型生成，写出似然，取负对数，得到 loss**。Mean Absolute Error (MAE) / Mean Squared Error (MSE) / Cross Entropy (CE) 都是这个框架在不同噪声假设下的特例。这篇 blog 顺着这条主线把三种最常见的回归 / 分类损失推一遍，再延伸到正则化、Focal、Hinge、InfoNCE 等几个常见变体。
 
 ---
 
@@ -31,10 +31,10 @@ $$
 为什么要取 $\log$？三个互相强化的理由：
 
 * **数值稳定**：似然是 $N$ 个 $(0,1]$ 概率的乘积，直接乘容易下溢；取 $\log$ 把乘法变加法。
-* **优化友好**：负对数似然把"乘积最大化"变成"求和最小化"，每个样本贡献一个独立可加的项，方便 mini-batch SGD。
-* **信息论解释**：$-\log p(y)$ 就是事件 $y$ 的信息量；NLL 就是平均信息量，连接到熵和 KL 散度（参见 5 号 blog [《KL Divergence：从熵到 Forward/Reverse KL》](./5-KL-Divergence.md)）。
+* **优化友好**：负对数似然把"乘积最大化"变成"求和最小化"，每个样本贡献一个独立可加的项，方便 mini-batch 随机梯度下降 (Stochastic Gradient Descent, SGD)。
+* **信息论解释**：$-\log p(y)$ 就是事件 $y$ 的信息量；NLL 就是平均信息量，连接到熵和 Kullback-Leibler (KL) 散度（参见 5 号 blog [《KL Divergence：从熵到 Forward/Reverse KL》](./5-KL-Divergence.md)）。
 
-NLL 也等价于一种 ERM (empirical risk minimization)：把"用 $-\log p_\theta$ 这个 loss 函数衡量预测好坏"当作经验风险来最小化。
+NLL 也等价于一种经验风险最小化 (Empirical Risk Minimization, ERM)：把"用 $-\log p_\theta$ 这个 loss 函数衡量预测好坏"当作经验风险来最小化。
 
 > 不同的分布假设 → 不同的 NLL → 不同的 loss。MSE / MAE / CE 的差别本质上就是分布假设的差别。
 
@@ -162,7 +162,7 @@ $$
 
 ## 4) CE：Categorical / Bernoulli 假设
 
-### 4.1 二分类（BCE）
+### 4.1 二分类：Binary Cross-Entropy (BCE)
 
 $y_i \in \{0,1\}$，模型输出 $\hat p_i = \sigma(z_i) \in (0,1)$，假设 $y_i \sim \mathrm{Bernoulli}(\hat p_i)$：
 
@@ -266,7 +266,7 @@ $$
 
 ---
 
-## 6) Bayesian / MAP 视角：从先验到正则化
+## 6) Bayesian / Maximum A Posteriori (MAP) 视角：从先验到正则化
 
 把 MLE 推广一步：在似然之上再加一个权重先验 $p(\theta)$，做 MAP 估计
 
@@ -348,7 +348,7 @@ $$
 
 它**不是从某个新的 NLL 推出来的**，而是 CE 的工程改造——这点和 MSE/MAE/CE 的"分布假设 → loss"模式不同，值得明确区分。
 
-### 7.4 Hinge loss / SVM 视角：另一条非概率路径
+### 7.4 Hinge loss / Support Vector Machine (SVM) 视角：另一条非概率路径
 
 二分类 $y \in \{-1, +1\}$，模型输出实数 $z = f(x)$：
 
@@ -363,7 +363,7 @@ $$
 
 它走的是"几何 margin"路线，而不是 NLL 路线。CE 永远在乎"再让正确类概率更高一点"，hinge 在 margin 达标后就完全不管，因此它的解依赖于"支持向量"。
 
-### 7.5 InfoNCE：本质是 K 类 CE
+### 7.5 InfoNCE：本质是 K 类 CE，也是互信息的变分下界
 
 对比学习中常见的 InfoNCE loss：
 
@@ -373,9 +373,29 @@ $$
 -\log \frac{\exp(\mathrm{sim}(q, k^+)/\tau)}{\sum_{i=0}^{K} \exp(\mathrm{sim}(q, k_i)/\tau)}
 $$
 
-把 $K$ 个候选（1 个正样本 + $K-1$ 个负样本）当成 $K$ 个类别，正样本是"正确类"，分子分母就是 softmax，外面取 $-\log$ 就是 CE。
+把 $K$ 个候选（1 个正样本 + $K-1$ 个负样本）当成 $K$ 个类别，正样本是"正确类"，分子分母就是 softmax，外面取 $-\log$ 就是 CE。**这是 InfoNCE 的浅层视角**。
 
-> InfoNCE = "把正样本当作正确类的 softmax 分类"。所有"对比 + 温度 $\tau$"的训练目标都是这个套路。
+**深层视角：互信息的变分下界**。把 query $q$ 看作随机变量 $X$、正样本 $k^+$ 看作 $Y$、$K-1$ 个负样本独立采自边缘分布 $p(Y)$。van den Oord et al. (CPC, 2018) 证明：
+
+$$
+\boxed{I(X; Y) \ge \log K - \mathcal{L}_{\mathrm{InfoNCE}}}
+$$
+
+其中 $I(X; Y)$ 是 query 与 positive 之间的**互信息 (Mutual Information, MI)**：
+
+$$
+I(X; Y)
+=
+\mathbb{E}_{p(x,y)}\!\Bigl[\log \frac{p(x, y)}{p(x)p(y)}\Bigr]
+=
+D_{\mathrm{KL}}\bigl(p(x,y)\,\|\,p(x)p(y)\bigr)
+$$
+
+**最小化 InfoNCE = 最大化 $I(X; Y)$ 的一个下界**。$K$ 越大下界越紧，这就是对比学习里"负样本越多越好"的根本原因——不只是让分类任务更难，而是直接抬高 MI 估计的下界紧度。
+
+直觉：模型必须学到一个表征空间，让正样本对的相似度显著高于负样本。这种"可区分度"恰好就是 $X, Y$ 之间统计依赖的强度，即互信息。
+
+> InfoNCE 一个名字两个身份：**浅看是 K 类 CE，深看是 $I(\text{query}; \text{positive})$ 的变分下界**——这也是它名字中"**Info**"的来源。这条线索会在 7 号 blog [《信息瓶颈》](./7-Information-Bottleneck.md) 里被系统化：从信息论角度看，MAE / MSE / KL / InfoNCE 全都来自一个统一目标——最大化保留信息、最小化冗余。
 
 ### 7.6 KL 作为 loss：知识蒸馏
 
@@ -395,7 +415,7 @@ $$
 
 **为什么回归不直接用 CE / 分类不直接用 MSE？** 本质是分布假设错配：
 
-* 用 CE 做回归 = 假设输出是离散的、$y$ 必须落在固定的几个 bin；如果你愿意把回归目标离散化（distributional RL、DALL·E 把图像 token 化），CE 反而是有效的设计——前提是离散化。
+* 用 CE 做回归 = 假设输出是离散的、$y$ 必须落在固定的几个 bin；如果你愿意把回归目标离散化（如 distributional Reinforcement Learning (RL)、DALL·E 把图像 token 化），CE 反而是有效的设计——前提是离散化。
 * 用 MSE 做分类 = 假设标签噪声是高斯的；不仅分布假设错（标签是离散的），更要命的是和 sigmoid / softmax 配合时梯度饱和（4.4 节）。
 
 **软标签的 CE 还是 NLL 吗？** 是。当目标 $p_i$ 不是 one-hot 而是软分布时，CE 已经不再等同于"-log 真实类概率"，但它仍然等于 $H(p_i, \hat p_i)$，以及（差一个常数）$D_{\mathrm{KL}}(p_i \| \hat p_i)$。换句话说，CE 在软标签下变成了"用模型分布去逼近软目标分布"的 forward KL，蒸馏和 label smoothing 都用到这一性质。

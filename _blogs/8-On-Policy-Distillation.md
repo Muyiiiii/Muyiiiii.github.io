@@ -1,11 +1,11 @@
 ---
-title: "7\\. On-Policy Distillation：从 SFT/RL 到 Self-Distillation"
+title: "8\\. On-Policy Distillation：从 SFT/RL 到 Self-Distillation"
 date: 2026-04-28
 ---
 On-policy distillation (OPD): combining SFT's dense supervision with RL's on-policy property, plus a tour of self-distillation works (OPSD, SDFT, SDPO, CRISP, ExOPD, GAD).
 
 
-近期很多工作都在围绕 **On-Policy Distillation (OPD)** 展开。它的核心定位很清晰：**在 student 自己采样出来的轨迹上，用 teacher 给每个 token 提供密集监督**——既保留 SFT 的 token-level dense signal，又拿到 RL 的 on-policy 训推一致性。这篇 blog 顺着 SFT / RL 的互补缺陷出发，把 OPD 的两个数学版本写清楚，再展开六个 self-distillation 方向的代表工作。
+近期很多工作都在围绕 **On-Policy Distillation (OPD)** 展开。它的核心定位很清晰：**在 student 自己采样出来的轨迹上，用 teacher 给每个 token 提供密集监督**——既保留 Supervised Fine-Tuning (SFT) 的 token-level dense signal，又拿到 Reinforcement Learning (RL) 的 on-policy 训推一致性。这篇 blog 顺着 SFT / RL 的互补缺陷出发，把 OPD 的两个数学版本写清楚，再展开六个 self-distillation 方向的代表工作。
 
 延续前面两篇 blog 的脉络：5 号 [《KL Divergence》](./5-KL-Divergence.md) 已经把 forward / reverse KL 在 distillation 里"局部 vs 全局"的二象性讲过；6 号 [《损失函数推导》](./6-Loss-Functions.md) 把 KL 作为 loss 的位置定下来。这篇是它们在**蒸馏方法**上的具体落地。
 
@@ -15,9 +15,9 @@ On-policy distillation (OPD): combining SFT's dense supervision with RL's on-pol
 
 * **OPD = student 产生 rollout（on-policy）+ teacher 给每个 token 的 logits 做监督（dense）**。
 * **Self-Distillation** 用同一个模型同时做 teacher 和 student（条件不同），绕开"tokenizer 不一致"和"teacher 上限"两个工程问题。
-* **OPSD** 在数学推理上 token 效率比 GRPO 高一个数量级，100 步内超过 GRPO 最终性能。
-* **CRISP** 用 self-distillation 做推理压缩，token 数砍半还能让准确率反升——证实长 CoT 里有大量"有害冗余"。
-* **ExOPD** 用一个 reward 放大系数 $\lambda$ 实现 reward extrapolation，理论上让 student 有可能超过 teacher。
+* **On-Policy Self-Distillation (OPSD)** 在数学推理上 token 效率比 Group Relative Policy Optimization (GRPO) 高一个数量级，100 步内超过 GRPO 最终性能。
+* **CRISP** 用 self-distillation 做推理压缩，token 数砍半还能让准确率反升——证实长 Chain-of-Thought (CoT) 里有大量"有害冗余"。
+* **ExOPD** (OPD with reward extrapolation) 用一个 reward 放大系数 $\lambda$ 实现 reward extrapolation，理论上让 student 有可能超过 teacher。
 
 ---
 
@@ -44,7 +44,7 @@ $$
 
 ### 1.2 RL：on-policy 但稀疏
 
-RL（如 PPO / GRPO，参见 3 号 [PPO](./3-PPO.md)、4 号 [GRPO](./4-GRPO.md)）正好相反：
+RL（如 Proximal Policy Optimization (PPO) / GRPO，参见 3 号 [PPO](./3-PPO.md)、4 号 [GRPO](./4-GRPO.md)）正好相反：
 
 * **训推一致**：训练时见的就是自己 rollout 出来的轨迹。
 * **缓解灾难性遗忘**：目标是"强化自身已有的好行为"，而不是强行拟合一个新分布，对内在知识破坏小。
@@ -86,9 +86,9 @@ OPD 把两边的好处拼起来：
 
 ## 2) On-Policy Distillation 的两种数学形式
 
-### 2.1 Sampled-token 版本（Reverse KL 的 MC 估计）
+### 2.1 Sampled-token 版本（Reverse KL 的 Monte Carlo (MC) 估计）
 
-按照 Thinking Machines Lab 的实现，OPD 在序列级别等价于 student 与 teacher 之间的 **reverse KL**：
+按照 Thinking Machines Lab 的实现，OPD 在序列级别等价于 student 与 teacher 之间的 **reverse Kullback-Leibler (KL) 散度**：
 
 $$
 \mathcal{L}_{\text{OPD}}(\theta)
@@ -131,7 +131,7 @@ $$
 
 （这正好是 5 号 [KL Divergence](./5-KL-Divergence.md) 第 5–8 节那套 mode-covering / mode-seeking 直觉的应用。）
 
-GKD（Generalized Knowledge Distillation）把这一点系统化，提供了 forward / reverse / JSD 的统一框架。
+Generalized Knowledge Distillation (GKD) 把这一点系统化，提供了 forward / reverse / Jensen-Shannon Divergence (JSD) 的统一框架。
 
 ### 2.2 Full-vocabulary 版本（Forward KL，方差更低）
 
@@ -260,7 +260,7 @@ $$
 
 **结果**：在数学推理上 token 效率比 GRPO 高约 10x，100 步内即可超过 GRPO 的最终性能。
 
-### 3.2 SDFT：Self-Distillation 治灾难性遗忘
+### 3.2 Self-Distillation Fine-Tuning (SDFT)：治灾难性遗忘
 
 > Self-Distillation Enables Continual Learning
 
@@ -273,7 +273,7 @@ $$
 
 > 直觉：on-policy 学习不是强行拟合一个新分布，而是在自己的 rollout 上做改进，对内在知识破坏极小。这一性质和 RL 在遗忘问题上的优势是一脉相承的。
 
-### 3.3 SDPO：用文本反馈作 teacher 条件
+### 3.3 Self-Distillation Policy Optimization (SDPO)：用文本反馈作 teacher 条件
 
 > Reinforcement Learning via Self-Distillation
 
@@ -335,7 +335,7 @@ $$
 
 > Learning beyond Teacher: Generalized On-Policy Distillation with Reward Extrapolation
 
-标准 OPD 框架下 student 的能力上限就是 teacher。Generalized OPD（G-OPD）引入一个 reward 缩放系数 $\lambda$：
+标准 OPD 框架下 student 的能力上限就是 teacher。Generalized On-Policy Distillation (G-OPD) 引入一个 reward 缩放系数 $\lambda$：
 
 $$
 \mathcal{L}_{\text{G-OPD}}(\theta)
@@ -351,23 +351,23 @@ $$
 \right]
 $$
 
-* $\lambda = 1$ 且 $\pi_{\text{ref}}$ 取均匀分布时严格退化为标准 OPD；实际中 $\pi_{\text{ref}}$ 多取 student 初始策略（类似 RLHF / DPO 的 KL 正则）。
+* $\lambda = 1$ 且 $\pi_{\text{ref}}$ 取均匀分布时严格退化为标准 OPD；实际中 $\pi_{\text{ref}}$ 多取 student 初始策略（类似 Reinforcement Learning from Human Feedback (RLHF) / Direct Preference Optimization (DPO) 的 KL 正则）。
 * $\lambda > 1$ 时 teacher 的 reward 权重被放大，鼓励 student 在 teacher 信号上**外推**——这就是 ExOPD（reward extrapolation）。
 
 **强弱蒸馏场景的 reward correction**：把大模型的 RL 后版本当作 $\pi_{\text{ref}}$ 会引入风格偏差；G-OPD 建议改用大模型的 pre-training base 版作为 $\pi_{\text{ref}}$，得到更准的 reward 信号。
 
-### 3.6 GAD：黑盒 OPD（拿不到 logits 的场景）
+### 3.6 Generative Adversarial Distillation (GAD)：黑盒 OPD（拿不到 logits 的场景）
 
 > Black-Box On-Policy Distillation of Large Language Models · `microsoft/gad`
 
-**动机**：GPT-4 / Claude 这种 API teacher 拿不到 logits，前面所有"对齐 token 分布"的方法都用不上。
+**动机**：GPT-4 / Claude 这种 Application Programming Interface (API) teacher 拿不到 logits，前面所有"对齐 token 分布"的方法都用不上。
 
 **做法**：用 **对抗训练** 替代 logit 对齐：
 
 * Student 当 generator，根据 prompt 生成回复。
 * Discriminator 判断回复是 student 生成的还是 teacher 生成的。
 * Student 优化目标是让 discriminator 分不清——逼近 teacher 风格。
-* 关键设计：**discriminator 与 student 联合演化**（co-evolve），始终给出 on-policy 的自适应反馈，避免 GAN 训练里 discriminator 被甩开的常见问题。
+* 关键设计：**discriminator 与 student 联合演化**（co-evolve），始终给出 on-policy 的自适应反馈，避免 Generative Adversarial Network (GAN) 训练里 discriminator 被甩开的常见问题。
 
 整体数据流：
 
