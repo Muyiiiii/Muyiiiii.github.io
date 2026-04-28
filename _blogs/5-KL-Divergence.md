@@ -1,5 +1,5 @@
 ---
-title: "KL Divergence：从熵到 Forward/Reverse KL"
+title: "5. KL Divergence：从熵到 Forward/Reverse KL"
 date: 2026-04-25
 ---
 Introduction of KL Divergence, entropy, cross entropy, and the difference between Forward KL and Reverse KL.
