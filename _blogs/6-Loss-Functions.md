@@ -32,7 +32,7 @@ $$
 
 * **数值稳定**：似然是 $N$ 个 $(0,1]$ 概率的乘积，直接乘容易下溢；取 $\log$ 把乘法变加法。
 * **优化友好**：负对数似然把"乘积最大化"变成"求和最小化"，每个样本贡献一个独立可加的项，方便 mini-batch 随机梯度下降 (Stochastic Gradient Descent, SGD)。
-* **信息论解释**：$-\log p(y)$ 就是事件 $y$ 的信息量；NLL 就是平均信息量，连接到熵和 Kullback-Leibler (KL) 散度（参见 5 号 blog [《KL Divergence：从熵到 Forward/Reverse KL》](./5-KL-Divergence.md)）。
+* **信息论解释**：$-\log p(y)$ 就是事件 $y$ 的信息量；NLL 就是平均信息量，连接到熵和 Kullback-Leibler (KL) 散度（参见 5 号 blog [《KL Divergence：从熵到 Forward/Reverse KL》](/blogs/5-KL-Divergence/)）。
 
 NLL 也等价于一种经验风险最小化 (Empirical Risk Minimization, ERM)：把"用 $-\log p_\theta$ 这个 loss 函数衡量预测好坏"当作经验风险来最小化。
 
@@ -395,7 +395,7 @@ $$
 
 直觉：模型必须学到一个表征空间，让正样本对的相似度显著高于负样本。这种"可区分度"恰好就是 $X, Y$ 之间统计依赖的强度，即互信息。
 
-> InfoNCE 一个名字两个身份：**浅看是 K 类 CE，深看是 $I(\text{query}; \text{positive})$ 的变分下界**——这也是它名字中"**Info**"的来源。这条线索会在 7 号 blog [《信息瓶颈》](./7-Information-Bottleneck.md) 里被系统化：从信息论角度看，MAE / MSE / KL / InfoNCE 全都来自一个统一目标——最大化保留信息、最小化冗余。
+> InfoNCE 一个名字两个身份：**浅看是 K 类 CE，深看是 $I(\text{query}; \text{positive})$ 的变分下界**——这也是它名字中"**Info**"的来源。这条线索会在 7 号 blog [《信息瓶颈》](/blogs/7-Information-Bottleneck/) 里被系统化：从信息论角度看，MAE / MSE / KL / InfoNCE 全都来自一个统一目标——最大化保留信息、最小化冗余。
 
 ### 7.6 KL 作为 loss：知识蒸馏
 

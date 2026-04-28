@@ -7,7 +7,7 @@ On-policy distillation (OPD): combining SFT's dense supervision with RL's on-pol
 
 近期很多工作都在围绕 **On-Policy Distillation (OPD)** 展开。它的核心定位很清晰：**在 student 自己采样出来的轨迹上，用 teacher 给每个 token 提供密集监督**——既保留 Supervised Fine-Tuning (SFT) 的 token-level dense signal，又拿到 Reinforcement Learning (RL) 的 on-policy 训推一致性。这篇 blog 顺着 SFT / RL 的互补缺陷出发，把 OPD 的两个数学版本写清楚，再展开六个 self-distillation 方向的代表工作。
 
-延续前面两篇 blog 的脉络：5 号 [《KL Divergence》](./5-KL-Divergence.md) 已经把 forward / reverse KL 在 distillation 里"局部 vs 全局"的二象性讲过；6 号 [《损失函数推导》](./6-Loss-Functions.md) 把 KL 作为 loss 的位置定下来。这篇是它们在**蒸馏方法**上的具体落地。
+延续前面两篇 blog 的脉络：5 号 [《KL Divergence》](/blogs/5-KL-Divergence/) 已经把 forward / reverse KL 在 distillation 里"局部 vs 全局"的二象性讲过；6 号 [《损失函数推导》](/blogs/6-Loss-Functions/) 把 KL 作为 loss 的位置定下来。这篇是它们在**蒸馏方法**上的具体落地。
 
 ---
 
@@ -44,7 +44,7 @@ $$
 
 ### 1.2 RL：on-policy 但稀疏
 
-RL（如 Proximal Policy Optimization (PPO) / GRPO，参见 3 号 [PPO](./3-PPO.md)、4 号 [GRPO](./4-GRPO.md)）正好相反：
+RL（如 Proximal Policy Optimization (PPO) / GRPO，参见 3 号 [PPO](/blogs/3-PPO/)、4 号 [GRPO](/blogs/4-GRPO/)）正好相反：
 
 * **训推一致**：训练时见的就是自己 rollout 出来的轨迹。
 * **缓解灾难性遗忘**：目标是"强化自身已有的好行为"，而不是强行拟合一个新分布，对内在知识破坏小。
@@ -129,7 +129,7 @@ $$
 * Forward KL $D_{\mathrm{KL}}(\pi_T \| \pi_\theta)$ 是 mode-covering 的，会强迫 student 覆盖 teacher 所有高概率区域，连边缘 mode 都不能漏；表达力不够时容易把概率铺到低质量区域。
 * Reverse KL $D_{\mathrm{KL}}(\pi_\theta \| \pi_T)$ 是 mode-seeking 的，student 只需专注 teacher 最集中的高质量模式。
 
-（这正好是 5 号 [KL Divergence](./5-KL-Divergence.md) 第 5–8 节那套 mode-covering / mode-seeking 直觉的应用。）
+（这正好是 5 号 [KL Divergence](/blogs/5-KL-Divergence/) 第 5–8 节那套 mode-covering / mode-seeking 直觉的应用。）
 
 Generalized Knowledge Distillation (GKD) 把这一点系统化，提供了 forward / reverse / Jensen-Shannon Divergence (JSD) 的统一框架。
 

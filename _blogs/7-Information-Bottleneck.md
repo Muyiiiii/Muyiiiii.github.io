@@ -5,7 +5,7 @@ date: 2026-04-28
 Deriving MSE, MAE, KL, and InfoNCE losses from the Information Bottleneck framework, unified via mutual information.
 
 
-6 号 [《损失函数推导》](./6-Loss-Functions.md) 顺着"假设噪声 → 写出 NLL → 得到 loss"那条主线，把 Mean Squared Error (MSE) / Mean Absolute Error (MAE) / Cross Entropy (CE) 推了一遍。这篇换一个视角：**所有这些 loss 也都可以从信息论一根根线扯出来**——具体说，从**互信息 (Mutual Information, MI)** 和 **Information Bottleneck (IB)** 这两个工具出发，MSE / MAE / KL / InfoNCE 会在同一张框架图里各自找到自己的位置。
+6 号 [《损失函数推导》](/blogs/6-Loss-Functions/) 顺着"假设噪声 → 写出 NLL → 得到 loss"那条主线，把 Mean Squared Error (MSE) / Mean Absolute Error (MAE) / Cross Entropy (CE) 推了一遍。这篇换一个视角：**所有这些 loss 也都可以从信息论一根根线扯出来**——具体说，从**互信息 (Mutual Information, MI)** 和 **Information Bottleneck (IB)** 这两个工具出发，MSE / MAE / KL / InfoNCE 会在同一张框架图里各自找到自己的位置。
 
 ---
 
@@ -29,7 +29,7 @@ $$
 H(X) = -\mathbb{E}_{p(x)}[\log p(x)]
 $$
 
-衡量 $X$ 自身的不确定性（参见 5 号 [《KL Divergence》](./5-KL-Divergence.md) 第 2 节）。
+衡量 $X$ 自身的不确定性（参见 5 号 [《KL Divergence》](/blogs/5-KL-Divergence/) 第 2 节）。
 
 **条件熵 (conditional entropy)**：
 
