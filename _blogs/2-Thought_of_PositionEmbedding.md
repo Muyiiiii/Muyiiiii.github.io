@@ -1,5 +1,5 @@
 ---
-title: "2. Thought of Position Embedding"
+title: "2\\. Thought of Position Embedding"
 date: 2026-02-04
 ---
 Sinusoidal PE vs. RoPE

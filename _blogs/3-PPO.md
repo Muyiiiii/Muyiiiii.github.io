@@ -1,5 +1,5 @@
 ---
-title: "3. Proximal Policy Optimization (PPO)"
+title: "3\\. Proximal Policy Optimization (PPO)"
 date: 2026-02-11
 ---
 Introduction of Proximal Policy Optimization (PPO)

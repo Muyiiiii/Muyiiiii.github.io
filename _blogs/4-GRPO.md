@@ -1,5 +1,5 @@
 ---
-title: "4. Group Relative Policy Optimization (GRPO)"
+title: "4\\. Group Relative Policy Optimization (GRPO)"
 date: 2026-02-11
 ---
 Introduction of Group Relative Policy Optimization (GRPO)

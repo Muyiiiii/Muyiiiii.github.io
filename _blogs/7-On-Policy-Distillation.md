@@ -1,5 +1,5 @@
 ---
-title: "7. On-Policy Distillation：从 SFT/RL 到 Self-Distillation"
+title: "7\\. On-Policy Distillation：从 SFT/RL 到 Self-Distillation"
 date: 2026-04-28
 ---
 On-policy distillation (OPD): combining SFT's dense supervision with RL's on-policy property, plus a tour of self-distillation works (OPSD, SDFT, SDPO, CRISP, ExOPD, GAD).

@@ -1,5 +1,5 @@
 ---
-title: "0. Other Thoughts"
+title: "0\\. Other Thoughts"
 date: 2026-02-05
 ---
 Some of Other Thoughts

@@ -1,5 +1,5 @@
 ---
-title: "6. 常见损失函数的推导：从 MLE 到 MSE / MAE / CE"
+title: "6\\. 常见损失函数的推导：从 MLE 到 MSE / MAE / CE"
 date: 2026-04-28
 ---
 Derivation of common loss functions from a unified MLE / NLL perspective: MSE, MAE, CE, and beyond.

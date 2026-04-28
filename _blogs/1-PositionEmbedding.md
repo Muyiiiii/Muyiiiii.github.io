@@ -1,5 +1,5 @@
 ---
-title: "1. Position Embedding"
+title: "1\\. Position Embedding"
 date: 2026-02-03
 ---
 About Position Embedding: Sinusoidal PE & RoPE
