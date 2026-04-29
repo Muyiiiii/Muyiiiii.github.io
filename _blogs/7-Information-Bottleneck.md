@@ -55,7 +55,7 @@ $$
 
 三种等价写法对应三种直觉：
 
-* **不确定性减少**：知道 $X$ 让 $Y$ 的不确定性减少了多少（$H(Y) - H(Y|X)$）。
+* **不确定性减少**：知道 $X$ 让 $Y$ 的不确定性减少了多少（$H(Y) - H(Y \mid X)$）。
 * **联合 vs 独立**：联合分布与"假设独立"的乘积分布之间的 KL——$X, Y$ 越独立 MI 越小。
 * **预测可分离性**：高 MI 意味着用 $X$ 能很好预测 $Y$。
 
@@ -201,7 +201,15 @@ $$
 
 回到 IB 目标：$\beta I(X; Z) - I(Z; Y)$。$I(Z;Y)$ 已经在 §3 / §4 里变成 NLL；那 $I(X; Z)$ 呢？
 
-直接算 $I(X; Z) = \mathbb{E}_{p(x, z)}\bigl[\log \frac{p(z \mid x)}{p(z)}\bigr]$ 需要边际 $p(z) = \mathbb{E}_{p(x)}[q(z \mid x)]$，对深度网络来说没办法闭式求出。**Variational Information Bottleneck (Alemi et al., 2017) 的解法**：换成一个可计算的上界——
+直接计算
+
+$$
+I(X; Z)
+=
+\mathbb{E}_{p(x, z)}\!\Bigl[\log \frac{p(z \mid x)}{p(z)}\Bigr]
+$$
+
+需要边际分布 $p(z) = \mathbb{E}_{p(x)}[q(z \mid x)]$，对深度网络来说没办法闭式求出。**Variational Information Bottleneck (Alemi et al., 2017) 的解法**：换成一个可计算的上界——
 
 $$
 I(X; Z)
