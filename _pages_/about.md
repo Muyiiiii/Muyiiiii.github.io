@@ -13,7 +13,7 @@ Hi! I am a 25Fall Ph.D. student in Computer Science at [the University of Illino
 
 My research interests focus on:
 
-- **LLM Agents**
+- **LLM Agents, Self-Evolving, On-Policy Distillation**
 - **Time Series Forecasting/Imputation**
 - **Graph Anomaly Detection**
 
@@ -24,6 +24,7 @@ My research interests focus on:
 Email: jyang265[at]uic[dot]edu
 
 ## 🔥 News
+- *2026.04*: 🎉🎉 One paper is accepted by ICML 2026!
 - *2026.01*: 🎉🎉 Two papers are accepted by ICLR 2026!
 - *2025.09*: 🎉🎉 One paper is accepted by NeurIPS 2025!
 - *2025.01*: 🎉🎉 One paper is accepted by WWW 2025!
@@ -31,6 +32,18 @@ Email: jyang265[at]uic[dot]edu
 ## 📝 Publications
 
 Notes:（*）indicates the equal contributions.
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICML, 2026</div><img src='../files/pic/paper/LatentTSF.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+From Observations to States: Latent Time Series Forecasting
+
+**Jie Yang**, Yifan Hu, Yuante Li, Kexin Zhang, Kaize Ding, Philip S. Yu
+
+[ **Paper**](https://arxiv.org/abs/2602.00297)   [**Code**](https://github.com/Muyiiiii/LatentTSF)
+
+</div>
+</div>
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR, 2026</div><img src='../files/pic/paper/TimeAlign.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
