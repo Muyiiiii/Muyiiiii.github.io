@@ -40,7 +40,19 @@ From Observations to States: Latent Time Series Forecasting
 
 **Jie Yang**, Yifan Hu, Yuante Li, Kexin Zhang, Kaize Ding, Philip S. Yu
 
-[ **Paper**](https://arxiv.org/abs/2602.00297)   [**Code**](https://github.com/Muyiiiii/LatentTSF)
+[ **Paper**](https://arxiv.org/abs/2602.00297)   [**Code**](https://github.com/Muyiiiii/LatentTSF)  ![Stars](https://img.shields.io/github/stars/Muyiiiii/LatentTSF)
+
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='../files/pic/paper/TSAgent.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+The Landscape of Agentic Time Series Systems: Architectures, Reliability, and Frontiers
+
+Yifan Hu\*, **Jie Yang**\*, Xilin Dai, Wanxu Cai, Kuiye Ding, Yuante Li, Qinghua Liu, Enze Ma, Zhiyuan Qu, Yixin Wang, Binyan Xu, Kexin Zhang, Peiyuan Liu, Zhijian Xu, Guibin Zhang, Yujin Tang, Yanwei Yue, Kening Zheng, Chengze Li, Hanrong Zhang, Haoyan Xu, Naiqi Li, Tao Dai, Dawei Cheng, John Paparrizos, Kaize Ding, Tian Zhou, Qiang Xu, Shu-tao Xia, Shirui Pan, Philip S Yu
+
+[ **Paper**](https://www.researchgate.net/publication/407030432_The_Landscape_of_Agentic_Time_Series_Systems_Architectures_Reliability_and_Frontiers)   [**Code**](https://github.com/TROUBADOUR000/Awesome-Agentic-Time-Series)  ![Stars](https://img.shields.io/github/stars/TROUBADOUR000/Awesome-Agentic-Time-Series)
 
 </div>
 </div>
@@ -52,7 +64,7 @@ Bridging Past and Future: Distribution-Aware Alignment for Time Series Forecasti
 
 Yifan Hu\*, **Jie Yang**\*, Tian Zhou, Peiyuan Liu, Yujin Tang, Rong Jin, Liang Sun
 
-[ **Paper**](https://arxiv.org/pdf/2509.14181)   [**Code**](https://github.com/TROUBADOUR000/TimeAlign)
+[ **Paper**](https://arxiv.org/pdf/2509.14181)   [**Code**](https://github.com/TROUBADOUR000/TimeAlign)  ![Stars](https://img.shields.io/github/stars/TROUBADOUR000/TimeAlign)
 
 </div>
 </div>
@@ -64,7 +76,7 @@ Glocal Information Bottleneck for Time Series Imputation
 
 **Jie Yang**, Kexin Zhang, Guibin Zhang, Philip S. Yu, Kaize Ding
 
-[**Paper**](https://neurips.cc/virtual/2025/poster/116239)  [**Arxiv**](https://arxiv.org/pdf/2510.04910)   [**Code**](https://github.com/Muyiiiii/NeurIPS-25-Glocal-IB)
+[**Paper**](https://neurips.cc/virtual/2025/poster/116239)  [**Arxiv**](https://arxiv.org/pdf/2510.04910)   [**Code**](https://github.com/Muyiiiii/NeurIPS-25-Glocal-IB)  ![Stars](https://img.shields.io/github/stars/Muyiiiii/NeurIPS-25-Glocal-IB)
 
 </div>
 </div>
@@ -77,7 +89,7 @@ Grad: Guided Relation Diffusion Generation for Graph Augmentation in Graph Fraud
 
 **Jie Yang**, Rui Zhang, Ziyang Cheng, Dawei Cheng, Guang Yang, Bo Wang
 
-[ **Paper**](https://dl.acm.org/doi/10.1145/3696410.3714520)   [**Code**](https://github.com/Muyiiiii/WWW25-Grad)
+[ **Paper**](https://dl.acm.org/doi/10.1145/3696410.3714520)   [**Code**](https://github.com/Muyiiiii/WWW25-Grad)  ![Stars](https://img.shields.io/github/stars/Muyiiiii/WWW25-Grad)
 
 </div>
 </div>
