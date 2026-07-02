@@ -29,7 +29,7 @@ Email: jyang265[at]uic[dot]edu
 - *2025.09*: 🎉🎉 One paper is accepted by NeurIPS 2025!
 - *2025.01*: 🎉🎉 One paper is accepted by WWW 2025!
 
-## 📝 Publications
+## 📝 Selected Publications
 
 Notes:（*）indicates the equal contributions.
 
@@ -50,7 +50,7 @@ From Observations to States: Latent Time Series Forecasting
 
 The Landscape of Agentic Time Series Systems: Architectures, Reliability, and Frontiers
 
-Yifan Hu\*, **Jie Yang**\*, Xilin Dai, Wanxu Cai, Kuiye Ding, Yuante Li, Qinghua Liu, Enze Ma, Zhiyuan Qu, Yixin Wang, Binyan Xu, Kexin Zhang, Peiyuan Liu, Zhijian Xu, Guibin Zhang, Yujin Tang, Yanwei Yue, Kening Zheng, Chengze Li, Hanrong Zhang, Haoyan Xu, Naiqi Li, Tao Dai, Dawei Cheng, John Paparrizos, Kaize Ding, Tian Zhou, Qiang Xu, Shu-tao Xia, Shirui Pan, Philip S Yu
+Yifan Hu\*, **Jie Yang**\*, Xilin Dai\*, Wanxu Cai, Kuiye Ding, Yuante Li, Qinghua Liu, Enze Ma, Zhiyuan Qu, Yixin Wang, Binyan Xu, Kexin Zhang, Peiyuan Liu, Zhijian Xu, Guibin Zhang, Yujin Tang, Yanwei Yue, Kening Zheng, Chengze Li, Hanrong Zhang, Haoyan Xu, Naiqi Li, Tao Dai, Dawei Cheng, John Paparrizos, Kaize Ding, Tian Zhou, Qiang Xu, Shu-tao Xia, Shirui Pan, Philip S Yu
 
 [ **Paper**](https://www.researchgate.net/publication/407030432_The_Landscape_of_Agentic_Time_Series_Systems_Architectures_Reliability_and_Frontiers)   [**Code**](https://github.com/TROUBADOUR000/Awesome-Agentic-Time-Series)  ![Stars](https://img.shields.io/github/stars/TROUBADOUR000/Awesome-Agentic-Time-Series)
 
