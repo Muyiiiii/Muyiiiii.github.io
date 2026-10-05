@@ -71,6 +71,7 @@ LastOPD: Taming Collapse in Latent On-Policy Distillation
 </div>
 </div>
 
+<!-- Hidden for now: PR-OPD, Latent-MOPD
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='../files/pic/paper/PR-OPD.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -94,6 +95,7 @@ Zhengyu Fang\*, Seoyeon Hong\*, **Jie Yang**\* (co-first), Muyang Li, Koyoshi Sh
 
 </div>
 </div>
+-->
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='../files/pic/paper/TSAgent.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
