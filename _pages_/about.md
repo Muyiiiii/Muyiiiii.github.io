@@ -40,7 +40,7 @@ Notes:（*）indicates the equal contributions.
 
 From Observations to States: Latent Time Series Forecasting
 
-**Jie Yang**\* (co-first), Yifan Hu\*, Yuante Li, Kexin Zhang, Kaize Ding, Philip S. Yu
+**Jie Yang**\*, Yifan Hu\*, Yuante Li, Kexin Zhang, Kaize Ding, Philip S. Yu
 
 [ **Paper**](https://arxiv.org/abs/2602.00297)   [**Code**](https://github.com/Muyiiiii/LatentTSF)  ![Stars](https://img.shields.io/github/stars/Muyiiiii/LatentTSF)
 
@@ -64,7 +64,7 @@ TimeEvo: Failure-Driven Self-Evolution of a Time Series Agent
 
 LastOPD: Taming Collapse in Latent On-Policy Distillation
 
-**Jie Yang**\* (co-first), Zhengyu Fang\*, Zelin Xu\*, Jiarui Sun, Xiran Fan, Junpeng Wang, Liang Wang, Qinghua Liu, Yiwei Cai, Yan Zheng
+**Jie Yang**\*, Zhengyu Fang\*, Zelin Xu\*, Jiarui Sun, Xiran Fan, Junpeng Wang, Liang Wang, Qinghua Liu, Yiwei Cai, Yan Zheng
 
 [ **Paper**](https://arxiv.org/abs/2609.28845)   [**Code**](https://github.com/Muyiiiii/LastOPD)  ![Stars](https://img.shields.io/github/stars/Muyiiiii/LastOPD)
 
