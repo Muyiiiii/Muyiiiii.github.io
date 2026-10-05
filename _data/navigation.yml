@@ -12,16 +12,17 @@ main:
     url: "/about/"
 
   - title: "Publications"
-    url: "/#-publications"
+    url: "/#-selected-publications"
 
   - title: "Educations"
     url: "/#-educations"
 
+  - title: "Internships"
+    url: "/#-internships"
+
   - title: "Blogs"
     url: /blogs/
 
-  # - title: "Internships"
-  #   url: "/#-internships"
   # - title: "Publications"
   #   url: /publications/
 
