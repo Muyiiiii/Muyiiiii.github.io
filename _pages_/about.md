@@ -33,7 +33,7 @@ Email: jyang265[at]uic[dot]edu
 
 ## 📝 Selected Publications
 
-Notes:（*）indicates the equal contributions.
+Notes:（*）indicates the equal contributions. For the full publication list, please see my [Google Scholar](https://scholar.google.com/citations?user=hYeMB74AAAAJ&hl=en).
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICML, 2026</div><img src='../files/pic/paper/LatentTSF.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
