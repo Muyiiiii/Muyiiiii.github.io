@@ -40,7 +40,7 @@ Notes:（*）indicates the equal contributions. For the full publication list, p
 
 From Observations to States: Latent Time Series Forecasting
 
-**Jie Yang**\*, Yifan Hu\*, Yuante Li, Kexin Zhang, Kaize Ding, Philip S. Yu
+<strong><u>Jie Yang</u></strong>\*, Yifan Hu\*, Yuante Li, Kexin Zhang, Kaize Ding, Philip S. Yu
 
 [ **Paper**](https://arxiv.org/abs/2602.00297)   [**Code**](https://github.com/Muyiiiii/LatentTSF)  ![Stars](https://img.shields.io/github/stars/Muyiiiii/LatentTSF)
 
@@ -52,7 +52,7 @@ From Observations to States: Latent Time Series Forecasting
 
 TimeEvo: Failure-Driven Self-Evolution of a Time Series Agent
 
-**Jie Yang**, Yan Zheng, Jiarui Sun, Xiran Fan, Junpeng Wang, Liang Wang, Zelin Xu, Qinghua Liu, Zhengyu Fang, Yiwei Cai, Philip S. Yu
+<strong><u>Jie Yang</u></strong>, Yan Zheng, Jiarui Sun, Xiran Fan, Junpeng Wang, Liang Wang, Zelin Xu, Qinghua Liu, Zhengyu Fang, Yiwei Cai, Philip S. Yu
 
 [ **Paper**](https://arxiv.org/abs/2609.27277)   [**Code**](https://github.com/Muyiiiii/TimeEvo)  ![Stars](https://img.shields.io/github/stars/Muyiiiii/TimeEvo)
 
@@ -64,20 +64,19 @@ TimeEvo: Failure-Driven Self-Evolution of a Time Series Agent
 
 LastOPD: Taming Collapse in Latent On-Policy Distillation
 
-**Jie Yang**\*, Zhengyu Fang\*, Zelin Xu\*, Jiarui Sun, Xiran Fan, Junpeng Wang, Liang Wang, Qinghua Liu, Yiwei Cai, Yan Zheng
+<strong><u>Jie Yang</u></strong>\*, Zhengyu Fang\*, Zelin Xu\*, Jiarui Sun, Xiran Fan, Junpeng Wang, Liang Wang, Qinghua Liu, Yiwei Cai, Yan Zheng
 
 [ **Paper**](https://arxiv.org/abs/2609.28845)   [**Code**](https://github.com/Muyiiiii/LastOPD)  ![Stars](https://img.shields.io/github/stars/Muyiiiii/LastOPD)
 
 </div>
 </div>
 
-<!-- Hidden for now: PR-OPD, Latent-MOPD
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='../files/pic/paper/PR-OPD.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 PR-OPD: Privileged Representation On-policy Self-Distillation for Agentic Reinforcement Learning
 
-Muyang Li\*, **Jie Yang**\* (co-first), Zhengyu Fang, Junchao Zhu, Zhengkun Xiao, Ruining Deng, Zhe Jiang, Shigang Chen
+Muyang Li\*, <strong><u>Jie Yang* (co-first)</u></strong>, Zhengyu Fang, Junchao Zhu, Zhengkun Xiao, Ruining Deng, Zhe Jiang, Shigang Chen
 
 [ **Paper**](https://arxiv.org/abs/2609.36642)   [**Code**](https://github.com/balibata/PR-OPD)  ![Stars](https://img.shields.io/github/stars/balibata/PR-OPD)
 
@@ -89,20 +88,19 @@ Muyang Li\*, **Jie Yang**\* (co-first), Zhengyu Fang, Junchao Zhu, Zhengkun Xiao
 
 Latent-MOPD: Latent Multi-Teacher On-Policy Distillation
 
-Zhengyu Fang\*, Seoyeon Hong\*, **Jie Yang**\* (co-first), Muyang Li, Koyoshi Shindo, Brandon Joseph Lwowski, Jing Li
+Zhengyu Fang\*, Seoyeon Hong\*, <strong><u>Jie Yang* (co-first)</u></strong>, Muyang Li, Koyoshi Shindo, Brandon Joseph Lwowski, Jing Li
 
 [ **Paper**](https://arxiv.org/abs/2610.02381)
 
 </div>
 </div>
--->
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='../files/pic/paper/TSAgent.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 The Landscape of Agentic Time Series Systems: Architectures, Reliability, and Frontiers
 
-Yifan Hu\*, **Jie Yang**\* (co-first), Xilin Dai\*, Wanxu Cai, Kuiye Ding, Yuante Li, Qinghua Liu, Enze Ma, Zhiyuan Qu, Yixin Wang, Binyan Xu, Kexin Zhang, Peiyuan Liu, Zhijian Xu, Guibin Zhang, Yujin Tang, Yanwei Yue, Kening Zheng, Chengze Li, Hanrong Zhang, Haoyan Xu, Naiqi Li, Tao Dai, Dawei Cheng, John Paparrizos, Kaize Ding, Tian Zhou, Qiang Xu, Shu-tao Xia, Shirui Pan, Philip S Yu
+Yifan Hu\*, <strong><u>Jie Yang* (co-first)</u></strong>, Xilin Dai\*, Wanxu Cai, Kuiye Ding, Yuante Li, Qinghua Liu, Enze Ma, Zhiyuan Qu, Yixin Wang, Binyan Xu, Kexin Zhang, Peiyuan Liu, Zhijian Xu, Guibin Zhang, Yujin Tang, Yanwei Yue, Kening Zheng, Chengze Li, Hanrong Zhang, Haoyan Xu, Naiqi Li, Tao Dai, Dawei Cheng, John Paparrizos, Kaize Ding, Tian Zhou, Qiang Xu, Shu-tao Xia, Shirui Pan, Philip S Yu
 
 [ **Paper**](https://www.researchgate.net/publication/407030432_The_Landscape_of_Agentic_Time_Series_Systems_Architectures_Reliability_and_Frontiers)   [**Code**](https://github.com/TROUBADOUR000/Awesome-Agentic-Time-Series)  ![Stars](https://img.shields.io/github/stars/TROUBADOUR000/Awesome-Agentic-Time-Series)
 
@@ -114,7 +112,7 @@ Yifan Hu\*, **Jie Yang**\* (co-first), Xilin Dai\*, Wanxu Cai, Kuiye Ding, Yuant
 
 Bridging Past and Future: Distribution-Aware Alignment for Time Series Forecasting
 
-Yifan Hu\*, **Jie Yang**\* (co-first), Tian Zhou, Peiyuan Liu, Yujin Tang, Rong Jin, Liang Sun
+Yifan Hu\*, <strong><u>Jie Yang* (co-first)</u></strong>, Tian Zhou, Peiyuan Liu, Yujin Tang, Rong Jin, Liang Sun
 
 [ **Paper**](https://arxiv.org/pdf/2509.14181)   [**Code**](https://github.com/TROUBADOUR000/TimeAlign)  ![Stars](https://img.shields.io/github/stars/TROUBADOUR000/TimeAlign)
 
@@ -126,9 +124,21 @@ Yifan Hu\*, **Jie Yang**\* (co-first), Tian Zhou, Peiyuan Liu, Yujin Tang, Rong 
 
 Glocal Information Bottleneck for Time Series Imputation
 
-**Jie Yang**, Kexin Zhang, Guibin Zhang, Philip S. Yu, Kaize Ding
+<strong><u>Jie Yang</u></strong>, Kexin Zhang, Guibin Zhang, Philip S. Yu, Kaize Ding
 
 [**Paper**](https://neurips.cc/virtual/2025/poster/116239)  [**Arxiv**](https://arxiv.org/pdf/2510.04910)   [**Code**](https://github.com/Muyiiiii/NeurIPS-25-Glocal-IB)  ![Stars](https://img.shields.io/github/stars/Muyiiiii/NeurIPS-25-Glocal-IB)
+
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='../files/pic/paper/CRIB.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+Revisiting Multivariate Time Series Forecasting with Missing Values
+
+<strong><u>Jie Yang</u></strong>, Yifan Hu, Kexin Zhang, Luyang Niu, Yushun Dong, Philip S. Yu, Kaize Ding
+
+[ **Paper**](https://arxiv.org/abs/2509.23494)   [**Code**](https://github.com/Muyiiiii/CRIB)  ![Stars](https://img.shields.io/github/stars/Muyiiiii/CRIB)
 
 </div>
 </div>
@@ -139,7 +149,7 @@ Glocal Information Bottleneck for Time Series Imputation
 
 Grad: Guided Relation Diffusion Generation for Graph Augmentation in Graph Fraud Detection
 
-**Jie Yang**, Rui Zhang, Ziyang Cheng, Dawei Cheng, Guang Yang, Bo Wang
+<strong><u>Jie Yang</u></strong>, Rui Zhang, Ziyang Cheng, Dawei Cheng, Guang Yang, Bo Wang
 
 [ **Paper**](https://dl.acm.org/doi/10.1145/3696410.3714520)   [**Code**](https://github.com/Muyiiiii/WWW25-Grad)  ![Stars](https://img.shields.io/github/stars/Muyiiiii/WWW25-Grad)
 
@@ -149,12 +159,15 @@ Grad: Guided Relation Diffusion Generation for Graph Augmentation in Graph Fraud
 
 ## 📖 Educations
 
-- 2025.09-2030.06 (*expected*), Ph.D. in Computer Science, ![](../files/pic/info/uic-small.png) **University of Illinois Chicago**
+- 2025.09-2028 (*expected*), Ph.D. in Computer Science, ![](../files/pic/info/uic-small.png) **University of Illinois Chicago**
 - 2021.09- 2025.06, Bachelor in Computer Science, ![](../files/pic/info/tongji.png)**Tongji University**
 
 ## 💻 Internships
 
-- Research Intern, **Visa Research**
+- 2026.05-2026.08, Research Intern, **Visa Research**, Foster City, CA
+- 2025.01-2025.08, Research Intern, **Northwestern University**, Evanston, IL
+- 2024.07-2025.01, Research Intern, **Tencent, WeChat Pay & FintechLab**, Shenzhen, China
+- 2022.10-2025.01, Research Assistant, **Tongji University, FintechLab**, Shanghai, China
 
 ## 🔗 Service
 
