@@ -17,7 +17,7 @@ On-policy distillation (OPD): combining SFT's dense supervision with RL's on-pol
 * **Self-Distillation** 用同一个模型同时做 teacher 和 student（条件不同），绕开"tokenizer 不一致"和"teacher 上限"两个工程问题。
 * **On-Policy Self-Distillation (OPSD)** 在数学推理上 token 效率比 Group Relative Policy Optimization (GRPO) 高一个数量级，100 步内超过 GRPO 最终性能。
 * **CRISP** 用 self-distillation 做推理压缩，token 数砍半还能让准确率反升——证实长 Chain-of-Thought (CoT) 里有大量"有害冗余"。
-* **ExOPD** (OPD with reward extrapolation) 用一个 reward 放大系数 $\lambda$ 实现 reward extrapolation，理论上让 student 有可能超过 teacher。
+* **ExOPD** (OPD with reward extrapolation) 用一个 reward 放大系数 $$\lambda$$ 实现 reward extrapolation，理论上让 student 有可能超过 teacher。
 
 ---
 
@@ -37,10 +37,10 @@ $$
 \right]
 $$
 
-* $x$ 是 prompt，$y^*$ 是专家答案，$\mathcal{D}$ 是数据集。
-* 每个 token $y_t^*$ 都被直接监督——这是 SFT 的最大优点：**信号密集、训练高效**。
+* $$x$$ 是 prompt，$$y^*$$ 是专家答案，$$\mathcal{D}$$ 是数据集。
+* 每个 token $$y_t^*$$ 都被直接监督——这是 SFT 的最大优点：**信号密集、训练高效**。
 
-但 SFT 是 **off-policy** 的：训练时 model 看到的上下文 $y_{<t}^*$ 来自专家轨迹，而推理时它面对的是自己生成的 $\hat y_{<t}$，二者分布不一致——经典的 **exposure bias**。一旦推理时走出训练分布，模型很容易越走越歪。
+但 SFT 是 **off-policy** 的：训练时 model 看到的上下文 $$y_{<t}^*$$ 来自专家轨迹，而推理时它面对的是自己生成的 $$\hat y_{<t}$$，二者分布不一致——经典的 **exposure bias**。一旦推理时走出训练分布，模型很容易越走越歪。
 
 ### 1.2 RL：on-policy 但稀疏
 
@@ -101,8 +101,8 @@ D_{\mathrm{KL}}(\pi_\theta \,\|\, \pi_T)
 \right]
 $$
 
-* $\pi_\theta$ 是 student（要训练），$\pi_T$ 是 teacher（冻结）。
-* $y \sim \pi_\theta$ 给出 on-policy 性质。
+* $$\pi_\theta$$ 是 student（要训练），$$\pi_T$$ 是 teacher（冻结）。
+* $$y \sim \pi_\theta$$ 给出 on-policy 性质。
 
 利用自回归分解，把序列级 KL 写成 token 级求和：
 
@@ -122,12 +122,12 @@ $$
 }
 $$
 
-实操：先用 $\pi_\theta$ 采样一条轨迹 $y$，再逐 token 算两边 log-prob 的差，求和后下降。**每个位置只用了被采样到的那一个 token**。
+实操：先用 $$\pi_\theta$$ 采样一条轨迹 $$y$$，再逐 token 算两边 log-prob 的差，求和后下降。**每个位置只用了被采样到的那一个 token**。
 
 **为什么用 reverse KL 而不是 forward KL？** MiniLLM 给出的论点：
 
-* Forward KL $D_{\mathrm{KL}}(\pi_T \| \pi_\theta)$ 是 mode-covering 的，会强迫 student 覆盖 teacher 所有高概率区域，连边缘 mode 都不能漏；表达力不够时容易把概率铺到低质量区域。
-* Reverse KL $D_{\mathrm{KL}}(\pi_\theta \| \pi_T)$ 是 mode-seeking 的，student 只需专注 teacher 最集中的高质量模式。
+* Forward KL $$D_{\mathrm{KL}}(\pi_T \| \pi_\theta)$$ 是 mode-covering 的，会强迫 student 覆盖 teacher 所有高概率区域，连边缘 mode 都不能漏；表达力不够时容易把概率铺到低质量区域。
+* Reverse KL $$D_{\mathrm{KL}}(\pi_\theta \| \pi_T)$$ 是 mode-seeking 的，student 只需专注 teacher 最集中的高质量模式。
 
 （这正好是 5 号 [KL Divergence](/blogs/5-KL-Divergence/) 第 5–8 节那套 mode-covering / mode-seeking 直觉的应用。）
 
@@ -135,7 +135,7 @@ Generalized Knowledge Distillation (GKD) 把这一点系统化，提供了 forwa
 
 ### 2.2 Full-vocabulary 版本（Forward KL，方差更低）
 
-采样版只利用了被采样到的那一个 token 的信息，**信噪比低、梯度方差大**。一个常见改进：在每个 token 位置对整个词表 $\mathcal{V}$ 做 KL，用 teacher 的概率作为权重：
+采样版只利用了被采样到的那一个 token 的信息，**信噪比低、梯度方差大**。一个常见改进：在每个 token 位置对整个词表 $$\mathcal{V}$$ 做 KL，用 teacher 的概率作为权重：
 
 $$
 \boxed{
@@ -152,8 +152,8 @@ $$
 }
 $$
 
-* 外层期望仍然来自 $\pi_\theta$ 的 rollout（on-policy 不变）。
-* 内层是每个位置上的 $D_{\mathrm{KL}}(\pi_T \,\|\, \pi_\theta)$，**这是 forward KL**。
+* 外层期望仍然来自 $$\pi_\theta$$ 的 rollout（on-policy 不变）。
+* 内层是每个位置上的 $$D_{\mathrm{KL}}(\pi_T \,\|\, \pi_\theta)$$，**这是 forward KL**。
 
 注意一个容易混淆的对比：
 
@@ -175,11 +175,11 @@ OPSD 的消融实验里 forward KL（full-vocab）效果最好，主要原因就
 
 最近一类工作的解决方案：**self-distillation**——同一个模型既当 teacher 又当 student，区别只是**条件信息不同**。
 
-* Teacher 看到额外的辅助信息 $c$（如专家答案、文本反馈、"be concise" 指令），生成质量更高的 soft label：
+* Teacher 看到额外的辅助信息 $$c$$（如专家答案、文本反馈、"be concise" 指令），生成质量更高的 soft label：
 
   $$\pi_T(\cdot \mid x, c) \triangleq p_\theta(\cdot \mid x, c)$$
 
-* Student 只看原问题 $x$，正常 rollout：
+* Student 只看原问题 $$x$$，正常 rollout：
 
   $$\pi_S(\cdot \mid x) \triangleq p_\theta(\cdot \mid x)$$
 
@@ -227,10 +227,10 @@ p_S(\cdot \mid x, \hat y_{<n})
 \right]
 $$
 
-* $\mathcal{S} = \{(x_i, y_i^*)\}$ 是带标注的推理数据集（如数学题 + 标准答案）。
-* $\hat y \sim p_S(\cdot \mid x)$ 表示 student（不看答案）做 rollout，得到上下文。
-* 每个 token 位置 $n$，teacher 以 $(x, y^*, \hat y_{<n})$ 为条件，student 以 $(x, \hat y_{<n})$ 为条件，对齐两者的 next-token 分布。
-* $D(\cdot \| \cdot)$ 可选 forward / reverse KL / JSD，实验里 **forward KL 最好**。
+* $$\mathcal{S} = \{(x_i, y_i^*)\}$$ 是带标注的推理数据集（如数学题 + 标准答案）。
+* $$\hat y \sim p_S(\cdot \mid x)$$ 表示 student（不看答案）做 rollout，得到上下文。
+* 每个 token 位置 $$n$$，teacher 以 $$(x, y^*, \hat y_{<n})$$ 为条件，student 以 $$(x, \hat y_{<n})$$ 为条件，对齐两者的 next-token 分布。
+* $$D(\cdot \| \cdot)$$ 可选 forward / reverse KL / JSD，实验里 **forward KL 最好**。
 
 整体数据流：
 
@@ -266,8 +266,8 @@ $$
 
 和 OPSD 几乎完全相同的 self-distillation 框架，但出发点不同：**持续学习**中学新任务时旧知识被灾难性遗忘。
 
-* Teacher：$\pi_T(\cdot \mid x, c) = p_\theta(\cdot \mid x, c)$，$c$ 是新任务的演示（demonstration）。
-* Student：在新任务的 prompt $x$ 上做 on-policy rollout 并向 teacher 对齐。
+* Teacher：$$\pi_T(\cdot \mid x, c) = p_\theta(\cdot \mid x, c)$$，$$c$$ 是新任务的演示（demonstration）。
+* Student：在新任务的 prompt $$x$$ 上做 on-policy rollout 并向 teacher 对齐。
 
 实验结论："consistently outperforms SFT, achieving higher new-task accuracy while substantially reducing catastrophic forgetting"——新任务学得更好，旧任务遗忘得更少。
 
@@ -277,7 +277,7 @@ $$
 
 > Reinforcement Learning via Self-Distillation
 
-Self-distillation 中 teacher 的辅助信息 $c$ **不必是 ground-truth**——任何能让 teacher 生成更好的"东西"都行。SDPO 把它换成**文本反馈** $f$（如"上一次第三步算错了"、单元测试报错等）：
+Self-distillation 中 teacher 的辅助信息 $$c$$ **不必是 ground-truth**——任何能让 teacher 生成更好的"东西"都行。SDPO 把它换成**文本反馈** $$f$$（如"上一次第三步算错了"、单元测试报错等）：
 
 $$
 \pi_T(\cdot \mid x, f) = p_\theta(\cdot \mid x, f)
@@ -335,7 +335,7 @@ $$
 
 > Learning beyond Teacher: Generalized On-Policy Distillation with Reward Extrapolation
 
-标准 OPD 框架下 student 的能力上限就是 teacher。Generalized On-Policy Distillation (G-OPD) 引入一个 reward 缩放系数 $\lambda$：
+标准 OPD 框架下 student 的能力上限就是 teacher。Generalized On-Policy Distillation (G-OPD) 引入一个 reward 缩放系数 $$\lambda$$：
 
 $$
 \mathcal{L}_{\text{G-OPD}}(\theta)
@@ -351,10 +351,10 @@ $$
 \right]
 $$
 
-* $\lambda = 1$ 且 $\pi_{\text{ref}}$ 取均匀分布时严格退化为标准 OPD；实际中 $\pi_{\text{ref}}$ 多取 student 初始策略（类似 Reinforcement Learning from Human Feedback (RLHF) / Direct Preference Optimization (DPO) 的 KL 正则）。
-* $\lambda > 1$ 时 teacher 的 reward 权重被放大，鼓励 student 在 teacher 信号上**外推**——这就是 ExOPD（reward extrapolation）。
+* $$\lambda = 1$$ 且 $$\pi_{\text{ref}}$$ 取均匀分布时严格退化为标准 OPD；实际中 $$\pi_{\text{ref}}$$ 多取 student 初始策略（类似 Reinforcement Learning from Human Feedback (RLHF) / Direct Preference Optimization (DPO) 的 KL 正则）。
+* $$\lambda > 1$$ 时 teacher 的 reward 权重被放大，鼓励 student 在 teacher 信号上**外推**——这就是 ExOPD（reward extrapolation）。
 
-**强弱蒸馏场景的 reward correction**：把大模型的 RL 后版本当作 $\pi_{\text{ref}}$ 会引入风格偏差；G-OPD 建议改用大模型的 pre-training base 版作为 $\pi_{\text{ref}}$，得到更准的 reward 信号。
+**强弱蒸馏场景的 reward correction**：把大模型的 RL 后版本当作 $$\pi_{\text{ref}}$$ 会引入风格偏差；G-OPD 建议改用大模型的 pre-training base 版作为 $$\pi_{\text{ref}}$$，得到更准的 reward 信号。
 
 ### 3.6 Generative Adversarial Distillation (GAD)：黑盒 OPD（拿不到 logits 的场景）
 
@@ -392,7 +392,7 @@ $$
 -\log \sigma\bigl(D(y_T) - D(G(x))\bigr)
 $$
 
-其中 $D(\cdot)$ 是 discriminator 打分，$y_T$ 是 teacher 输出，$G(x)$ 是 student 输出。
+其中 $$D(\cdot)$$ 是 discriminator 打分，$$y_T$$ 是 teacher 输出，$$G(x)$$ 是 student 输出。
 
 > 其他几种方法都靠对齐 token 分布；GAD 把"对齐"换成"骗过判别器"，是 OPD 在 black-box 场景的唯一可行路线。
 
@@ -400,15 +400,15 @@ $$
 
 ## 4) 一张图：六篇工作怎么放在同一个框架下
 
-所有 self-distillation 工作都共享同一个骨架：teacher 加额外条件 $c$、student 不加 $c$、在 student 的 rollout 上做 OPD。差别只在 $c$ 是什么、loss 形式怎么扩展：
+所有 self-distillation 工作都共享同一个骨架：teacher 加额外条件 $$c$$、student 不加 $$c$$、在 student 的 rollout 上做 OPD。差别只在 $$c$$ 是什么、loss 形式怎么扩展：
 
-| 方法 | Teacher 条件 $c$ | 关键改造 | 解决的问题 |
+| 方法 | Teacher 条件 $$c$$ | 关键改造 | 解决的问题 |
 |---|---|---|---|
-| OPSD | ground-truth $y^*$ | full-vocab forward KL + per-token clip | RL token 效率低 |
-| SDFT | demonstration $c$ | 与 OPSD 同框架 | 持续学习中的灾难性遗忘 |
-| SDPO | 文本反馈 $f$ | 用 verifier 输出当条件 | RL 信号稀疏 |
+| OPSD | ground-truth $$y^*$$ | full-vocab forward KL + per-token clip | RL token 效率低 |
+| SDFT | demonstration $$c$$ | 与 OPSD 同框架 | 持续学习中的灾难性遗忘 |
+| SDPO | 文本反馈 $$f$$ | 用 verifier 输出当条件 | RL 信号稀疏 |
 | CRISP | "be concise" 指令 | 无 ground-truth | 推理 CoT 冗余 |
-| ExOPD | （无新条件，调 $\lambda$） | reward extrapolation + $\pi_{\text{ref}}$ 校正 | student 能力受限于 teacher |
+| ExOPD | （无新条件，调 $$\lambda$$） | reward extrapolation + $$\pi_{\text{ref}}$$ 校正 | student 能力受限于 teacher |
 | GAD   | （teacher 是 black-box） | 对抗训练替代 logit 对齐 | 拿不到 teacher logits |
 
 ---

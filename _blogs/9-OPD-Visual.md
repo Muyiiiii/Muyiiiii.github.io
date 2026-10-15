@@ -37,7 +37,7 @@ OPD 把 student rollout 与 teacher 每个位置的 logit 对齐。下半部分�
 
 ## 4) OPSD：Self-Distilled Reasoner
 
-OPSD 的系统图——dataset 出 prompt $x$ 给 student、prompt $(x, y^*)$ 给 teacher，per-token divergence 只让 student 一侧反传。
+OPSD 的系统图——dataset 出 prompt $$x$$ 给 student、prompt $$(x, y^*)$$ 给 teacher，per-token divergence 只让 student 一侧反传。
 
 ![OPSD architecture: same LLM in two modes, gradient only via student](/files/blog_assets/OPD/4.jpg)
 
@@ -53,7 +53,7 @@ SDFT 把 self-distillation 用作正则化，缓解灾难性遗忘；SDPO 把 ve
 
 ## 6) CRISP（推理压缩）+ G-OPD / ExOPD 引言
 
-CRISP 给 teacher 加 "be concise" 指令蒸馏到 student，token 数砍半同时准确率反升；G-OPD 引入 reward 缩放系数 $\lambda$。
+CRISP 给 teacher 加 "be concise" 指令蒸馏到 student，token 数砍半同时准确率反升；G-OPD 引入 reward 缩放系数 $$\lambda$$。
 
 ![CRISP results table + G-OPD intro](/files/blog_assets/OPD/6.jpg)
 
